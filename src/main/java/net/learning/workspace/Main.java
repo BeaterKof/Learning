@@ -1,8 +1,11 @@
 package net.learning.workspace;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.stream.Stream;
 
 /**
  * created by: andrei
@@ -12,64 +15,64 @@ public class Main {
 
     public static void main(String[] args) {
 
-        A a = new A();
-        a.printme();
+        //selection
+        int[] arr = {4,5,6,3,22,1,66};
+        printarr(arr);
+        selection(arr);
+        printarr(arr);
 
     }
 
-
-
-    static int factorial(int n) {
-        return n <= 2 ? 2 : n * factorial(n - 1);
-    }
-
-    static int fibonacci(int n) {
-        return n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2);
-    }
-
-    static int sumDigits(int n) {
-        return n <= 0 ? 0 : (n % 10) + sumDigits(n / 10);
-    }
-
-    static String reverseString(String n) {
-        return n.length() <= 1 ? n : reverseString(n.substring(1, n.length())) + n.charAt(0);
-    }
-
-    static boolean palindrome(String s) {
-        return s.length() <= 1 || s.charAt(0) == s.charAt(s.length()-1) && palindrome(s.substring(1, s.length() - 1));
-    }
-
-    static void decToBin(int n) {
-        if (n > 0) {
-            decToBin(n / 2);
-            System.out.print(n % 2);
+    static void selection(int[] arr) {
+        if(arr == null) throw new NullPointerException();
+        for(int i=0; i<arr.length; i++) {
+            swap(arr, findMin(arr, i), i);
         }
     }
 
-    static int powerOf(int n, int pow) {
-        return pow <= 1 ? n : powerOf(n, pow - 1) * n;
-    }
-
-    static <E> List<E> reverseList(List<E> list, int idx) {
-        if(idx < list.size()/2) {
-            E temp = list.get(idx);
-            list.set(idx, list.get(list.size() - (1 + idx)));
-            list.set(list.size() - (1 + idx), temp);
-//            System.out.println(list);
-            return reverseList(list, idx + 1);
+    static int findMin(int[] arr, int i) {
+        int min=i;
+        for(int j=i; j<arr.length; j++) {
+            if(arr[j] < arr[i]) min = j;
         }
-        return list;
+        return min;
     }
+
+    static void swap(int[] arr, int x, int y) {
+        int temp = arr[x];
+        arr[x] = arr[y];
+        arr[y] = temp;
+    }
+
+    static void printarr(int[] arr) {
+        for(int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+
 }
 
-class B {
-    static void printme() {
-        System.out.println("print B");
-    }
-}
+class Person {
+    private int id;
 
-class A extends B {
-    static void printme() {
-        System.out.println("print A");
+    public Person(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                '}';
     }
 }

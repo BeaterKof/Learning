@@ -2,6 +2,7 @@ package net.learning.java.threads;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveAction;
 import java.util.logging.Logger;
@@ -14,6 +15,9 @@ public class ForkJoinPoolExample {
 
     public static void main(String[] args) {
 
+        CustomRecursiveAction action = new CustomRecursiveAction("abcdefghijklmnop");
+        action.fork();
+        action.join();
     }
 }
 
@@ -21,9 +25,6 @@ class CustomRecursiveAction extends RecursiveAction {
 
     private String workload = "";
     private static final int THRESHOLD = 4;
-
-    private static Logger logger =
-            Logger.getAnonymousLogger();
 
     public CustomRecursiveAction(String workload) {
         this.workload = workload;
@@ -52,7 +53,7 @@ class CustomRecursiveAction extends RecursiveAction {
 
     private void processing(String work) {
         String result = work.toUpperCase();
-        logger.info("This result - (" + result + ") - was processed by "
+        System.out.println("This result - (" + result + ") - was processed by "
                 + Thread.currentThread().getName());
     }
 }
