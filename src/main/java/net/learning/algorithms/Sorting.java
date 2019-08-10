@@ -24,7 +24,8 @@ public class Sorting {
     }
 
     /*
-    bubbleSort -> Go through the array and compare each element with the next one. Switch if first element is bigger than the next.
+    BubbleSort
+    -> Go through the array and compare each element with the next one. Switch if first element is bigger than the next.
      */
 
     public static void bubbleSort(int[] a){
@@ -47,7 +48,7 @@ public class Sorting {
     }
 
     /*
-     insertionSort -> Compare with the next and if the next is smaller than swap values
+     InsertionSort -> Compare with the next and if the next is smaller than swap values
      and compare the swaped value with the smaller values.
      */
 
@@ -112,10 +113,54 @@ public class Sorting {
 
 
     /*
+    BubbleSort
+    -> Go through the array and compare each element with the next one. Switch if first element is bigger than the next.
+    Av - good only for small sized data and easy to implement
+    Da - n_2 in all cases like selection
+
+    InsertionSort -> Compare with the next and if the next is smaller than swap values
+     and compare the swaped value with the smaller values.
+     Av: - faster than bubble/selection
+         - shines on partially sorted arrays
+         - stable
+         - used in conjunction with MergeSort for stability
+         - writes are quite minimal
+
+    SelectionSort -> Check for the smalles element and replace the first element with it.
+
     Merge sort -> Divide the array into pieces by one and compare two by two. Than compare two by two by comparing the first
                     element from the first couple with each value from the second couple.
-    Shell sort -> Divide the array in two and compare each element by indexes. Repeat. (based on insertion sort)
-    Heap sort ->
+
+    Quick sort
+    -> similar to selection sort
+    -> pick a pivot element and all the smaller elements go before it, all the bigger elements go after it
+    -> switch first bigger from left subarray with first smaller from right subarray
+    -> move to subarrays and repeat
+    AV: - has average time complexity of Θ(n log n);
+        - can be implemented with space complexity of Θ(log n)
+    DEZ:  - not stable
+          - poor pivot choice could lead to O(n^2) complexity
+
+    Shell sort
+    -> improves insertion sort by comparing with elements that are a distance apart(gap) (rather then adjacent)
+    -> Divide the array in two and compare each element by indexes. Repeat. (based on insertion sort)
+    -> its complexity depends on the gap sequence
+
+    Heap sort
+    -> build heap (sorted tree) and create max head and make the same changes in the array
+    -> used instead of merge sort only when there is lesser space available
+
+    Bucket sort
+    -> its a non-comparison sorting alg
+    -> works like a map (uses insertion sort for each bucket)
+    -> works well in better parallelism
+    DEZ:
+    - you can't apply it to all data
+    - you need a good bucketing scheme
+
+    Radix sort
+    -> only used to sort numbers
+    -> it sorts numbers by grouping in buckets by digits
 
         COMPLEXITIES:   best       worst
 
